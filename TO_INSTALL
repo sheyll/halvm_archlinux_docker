@@ -7,7 +7,9 @@ bzip2
 cabal-install
 customizepkg
 curl
+dblatex
 device-mapper
+docbook-xsl
 emacs
 fakeroot
 file
@@ -23,10 +25,14 @@ gmp
 happy
 haskell-hscolour
 libtool
+libxslt
 m4
 make
 mc
+ncurses
 patch
+perl
+python
 pkg-config
 rsync
 sed
