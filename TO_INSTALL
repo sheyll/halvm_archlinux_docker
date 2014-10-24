@@ -1,3 +1,4 @@
+ack
 alex
 autoconf
 automake
@@ -5,7 +6,9 @@ bison
 bzip2
 cabal-install
 customizepkg
+curl
 device-mapper
+emacs
 fakeroot
 file
 flex
@@ -18,10 +21,15 @@ git
 glibc
 gmp
 happy
+haskell-hscolour
 libtool
 m4
 make
+mc
 patch
 pkg-config
+rsync
 sed
-yaourt
+tree
+vim
+xen

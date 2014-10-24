@@ -17,3 +17,8 @@ build: image Dockerfile TO_INSTALL pacman.conf
 # Pull the Archlinux base image.
 image:
 	docker pull base/archlinux
+
+.PHONY: run
+# Start a shell inside the finished container
+run:
+	docker run -i -t halvm/archlinux
