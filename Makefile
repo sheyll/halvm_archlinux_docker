@@ -8,17 +8,29 @@
 #       use docker.
 #
 
-.PHONY: build
-# Install all build dependencies and build HaLVM.
-build: image Dockerfile TO_INSTALL pacman.conf
-	docker build --rm=false -t halvm/archlinux . | tee build.log
-
+# Create a docker container from a docker image with HaLVM installed:
 .PHONY: image
-# Pull the Archlinux base image.
-image:
-	docker pull base/archlinux
+container: clean-container image
+	docker create -i -t --name halvm-archlinux halvm/archlinux:latest
 
+# Start a shell inside the finished container:
 .PHONY: run
-# Start a shell inside the finished container
 run:
-	docker run -i -t halvm/archlinux
+	docker start -a -i halvm-archlinux
+
+# Install all build dependencies and build HaLVM into a docker container:
+.PHONY: image
+image: Dockerfile TO_INSTALL pacman.conf
+	docker pull base/archlinux
+	docker build -t halvm/archlinux . | tee build.log
+
+# Remove the docker container, but not the image:
+.PHONY: clean-container
+clean-container:
+	-docker rm halvm-archlinux
+
+# Remove the docker container AND image:
+.PHONY: clean-image
+clean-image: clean-container
+	-rm build.log
+	-docker rmi halvm/archlinux:latest
