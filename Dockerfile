@@ -31,6 +31,9 @@ RUN make install
 WORKDIR /build
 RUN rm -rf HaLVM
 
+# Update cabal
+RUN cabal update
+
 # Install HaNS
 WORKDIR /build
 RUN git clone https://github.com/GaloisInc/HaNS.git
